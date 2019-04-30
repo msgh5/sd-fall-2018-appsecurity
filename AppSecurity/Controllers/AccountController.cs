@@ -449,6 +449,7 @@ namespace AppSecurity.Controllers
             {
                 return Redirect(returnUrl);
             }
+
             return RedirectToAction("Index", "Home");
         }
 

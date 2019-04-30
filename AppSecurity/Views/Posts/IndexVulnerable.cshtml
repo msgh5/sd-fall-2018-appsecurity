@@ -1,0 +1,43 @@
+﻿@model DataSet
+
+
+@{
+    ViewBag.Title = "IndexVulnerable";
+}
+
+<h2>Posts</h2>
+<form method="get">
+    <input type="text" name="filter" class="form-control" />
+    <button type="submit" class="btn btn-primary">Search!</button>
+</form>
+
+@if(ViewBag.Filter != null)
+{
+    <h2>You are searching for: @Html.Raw(ViewBag.Filter)</h2>
+}
+
+@foreach (DataTable table in Model.Tables)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach (DataColumn column in table.Columns)
+                {
+                    <th>@column.ColumnName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow row in table.Rows)
+            {
+                <tr>
+                    @foreach (DataColumn column in table.Columns)
+                    {
+                        <td>@row[column.ColumnName]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
